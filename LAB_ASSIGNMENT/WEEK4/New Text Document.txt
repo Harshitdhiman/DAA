@@ -1,0 +1,82 @@
+#include<stdio.h>
+void mergesort(int arr[] , int l , int r , int *c);
+void merge(int arr[] , int l , int m , int r, int *c);
+void inversion(int arr[],int n);
+int main(){
+    int t,n;
+    printf("Enter the test Cases : ");
+    scanf("%d",&t);
+    while(t){
+        int c=0;
+        printf("Enter the number of element in array :");
+        scanf("%d",&n);
+        int arr[n];
+        printf("Enter the element in array :");
+
+        for(int i=0;i<n;i++){
+            scanf("%d",&arr[i]);
+        }
+        int l=0,r=n-1;
+        inversion(arr,n);
+        mergesort(arr,l,r,&c);
+        for(int i=0;i<n;i++){
+            printf("%d ",arr[i]);
+        }
+            printf("\nComparision : %d\n",c);
+
+    t--;
+    }
+}
+void mergesort(int arr[] , int l , int r ,int *c){
+    if(l<r){
+        int m=l+(r-l)/2;
+        mergesort(arr,l,m,c);
+        mergesort(arr,m+1,r,c);
+        merge(arr,l,m,r,c);
+    }
+}
+void merge(int arr[] , int l , int m , int r, int *c){
+    int n1=m-l+1;
+    int n2=r-m;
+    int L[n1];
+    int R[n2];
+    for(int i=0;i<n1;i++){
+        L[i]=arr[l+i];
+    }
+    for(int i=0;i<n2;i++){
+        R[i]=arr[m+i+1];
+    }
+    int i=0,j=0,k=l;
+    while(i<n1 && j<n2){
+        (*c)++;
+        if(L[i]<R[j]){
+            arr[k]=L[i];
+            i++;
+            k++;
+        }
+        else{
+            arr[k]=R[j];
+            j++;
+            k++;
+        }
+    }
+        while(i<n1){
+        arr[k]=L[i];  
+        i++;
+        k++;
+        }
+        while(j<n2){
+        arr[k]=R[j];
+        j++;
+        k++;  
+        }
+}
+void inversion(int arr[],int n){
+    int inv=0;
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(arr[i]>arr[j])inv++;
+        }
+    }
+    printf("\nInversion : %d\n",inv);
+}
