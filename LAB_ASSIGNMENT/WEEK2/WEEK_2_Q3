@@ -1,36 +1,32 @@
-#include<bits/stdc++.h>
-using namespace std;
+#include<stdio.h>
+#include <stdlib.h>
+
+
 int main()
 {
-    int n,t,c=0,key;
-    cout<<"enter the no of test cases:";
-    cin>>t;
-    cout<<"enter the size of array:";
-    cin>>n;
-    int arr[n];
-    while(t!=0)
-    {
-      cout<<"enter the elements of array:";
-      for(int i=0;i<n;i++)
-      cin>>arr[i];
-      cout<<"Enter the key:";
-      cin>>key;
-      for(int i=0;i<n;i++)
-      {
-         for(int j=i;j<n;j++)
-         {
-                int diff=0;
-              diff=abs(arr[i]-arr[j]);
-                if(key==diff)
-                {
-                  c++;
-                }
+    int t;
+    scanf("%d", &t);
 
-          }
+    while(t){
+        int n;
+        scanf("%d", &n);
 
-       }
-   cout<<c;
-    t--;
-}
-return 0;
+        int arr[n];
+        for(int i=0;i<n;i++)
+            scanf("%d", &arr[i]);
+
+        int k,count=0;
+        scanf("%d", &k);
+
+        for(int i=0;i<n;i++){
+            for(int j=1; j<n; j++)
+                if(arr[j]-arr[i]==k)
+                    {
+                        count++;
+                    }
+        }
+        printf("%d pairs found", count);
+
+        t--;
+    }
 }
