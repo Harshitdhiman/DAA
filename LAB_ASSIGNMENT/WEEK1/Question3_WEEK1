@@ -1,42 +1,53 @@
-#include<iostream>
+#include<stdio.h>
 #include<math.h>
-using namespace std;
-int JumpSearch(int A[],int key,int n)
-{
-    int m=sqrt(n);
-    int i=0;
-    while(A[m]<=key && m<n)
-    {
-        i=m;
-        m=m+sqrt(n);
-        if(m>n-1)
-            m=n;
-    }
-    for(int k=i;k<m;k++)
-    {
-        if(A[k]==key)
-            return k;
-    }
-    return -1;
-}
+
 int main()
 {
-    int n,key;
-     cout<<"enter the size of array:";
-     cin>>n;
-     
-    int A[n];
-    cout<<"enter the elements:";
-    for(int i=0;i<n;i++)
-        cin>>A[i];
-        
-     cout<<"enter the key:";
-     cin>>key;
-     
-     int c= JumpSearch(A,key,n);
-     if(c>0)
-        cout<<"found";
-     else
-        cout<<"not found";
-    return 0;
+    int t;
+    printf("Enter number of test cases: ");
+    scanf("%d", &t);
+    while(t){
+    int i,j,n,m,key,flag=-1;
+
+    printf("\nEnter number of elements: ");
+    scanf("%d",&n);
+    int arr[n];
+    printf("Enter elements of array: ");
+    for(i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+
+    m=sqrt(n);
+    printf("Enter key to be found: ");
+    scanf("%d",&key);
+    int comp=0;
+
+    for(i=0; i<n; i+=m)
+    {
+        comp++;
+        if(arr[i]==key)
+        {
+
+            flag=i;
+            break;
+        }
+        else if(arr[i]>key) 
+        {
+            for(j=(i-m)+1; j<i;j++)
+            {
+                comp++;
+                if(arr[j]==key){
+                    flag=j;
+                    break;}
+            }
+        }
+    }
+
+    if(flag==-1)
+        printf("Key not found in %d comp",comp);
+    else
+        printf("Key found at %d index in %d comp",flag,comp);
+
+
+        t--;
+    }
 }
