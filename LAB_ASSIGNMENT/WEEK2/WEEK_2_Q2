@@ -5,11 +5,12 @@ int main()
     int n,t;
     cout<<"enter the no of test cases:";
     cin>>t;
+    int temp;
+    while(t!=0)
+    {
     cout<<"enter the size of array:";
     cin>>n;
     int arr[n];
-    while(t!=0)
-    {
       cout<<"enter the elements of array:";
       for(int i=0;i<n;i++)
       cin>>arr[i];
@@ -23,17 +24,21 @@ int main()
             sum=arr[i]+arr[j];
            for(int k=0;k<n;k++)
           {
+              temp=0;
               if(arr[k]==sum)
                {
-                cout<<i<<" "<<j<<" "<<k;
-                 return 0;
+                   temp=1;
+                cout<<i<<" "<<j<<" "<<k<<endl;
+                 break;
                }
 
           }
-
+            if(temp=1)break;
        }
+            if(temp=1)break;
 
     }
+    if(temp==0)
     cout<<"No sequence found";
     t--;
 }
