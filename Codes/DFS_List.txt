@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void dfs(int node , vector<int>&vis , vector<int>&dfs_path ,vector<int>adj[]){
+        dfs_path.push_back(node);
+        vis[node]=1;
+
+        for(auto it:adj[node]){
+            if(vis[it]==0){
+                dfs(it,vis,dfs_path,adj);
+            }
+        }
+}
+
+int main(){
+    int n,m;
+    cout<<"Enter the Nodes and edges : ";
+    cin>>n>>m;
+    vector<int>adj[n+1];
+    for(int i=0;i<m;i++){
+        int u,v;
+    cout<<"Enter the nodes of edge : ";
+    cin>>u>>v;
+
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+        
+    }
+    vector<int>dfs_path;
+    vector<int>vis(n+1,0);
+    for(int i=1;i<n+1;i++){
+        if(vis[i]==0){
+            dfs(i,vis,dfs_path,adj);
+        }
+    }
+        for(int i=0;i<dfs_path.size();i++){
+            cout<<dfs_path[i]<<" ";
+        }
+}
+
+
+

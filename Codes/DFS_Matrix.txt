@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+
+using namespace std; 
+
+void dfs(int node,vector<int>&vis,vector<int>&ans,vector<vector<int>>&v)
+{
+   
+     ans.push_back(node);
+     vis[node]=1;
+     for(int i=1;i<v[node].size();i++)
+     {
+         if(vis[i]!=1 && v[node][i]!=0)
+         {
+             dfs(i,vis,ans,v);
+         }
+     }
+
+
+}
+int main(){
+int n;
+cout<<"enter the no. of nodes"<<endl;
+cin>>n;
+vector<vector<int>>v(n+1,vector<int>(n+1,0));
+
+ for(int i=1;i<n+1;i++)
+ {
+     for(int j=1;j<n+1;j++)
+     cin>>v[i][j];
+ }
+ vector<int>vis(n+1);
+ vector<int>ans;
+ for(int i=1;i<n+1;i++)
+ {
+     if(!vis[i])
+     dfs(i,vis,ans,v);
+
+ }
+ cout<<"the dfs transversal is as:"<<endl;
+ for(int i=0;i<ans.size();i++)
+ cout<<ans[i]<<" ";
+return 0;
+}

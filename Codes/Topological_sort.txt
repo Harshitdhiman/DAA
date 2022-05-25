@@ -1,0 +1,39 @@
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+
+void topo(int node , vector<int>&vis , vector<int>adj[] , stack<int>&st){
+    vis[node]=1;
+    for(auto it: adj[node]){
+        if(vis[it]==0){
+            topo(it,vis,adj,st);
+        }
+    }
+    st.push(node);
+}
+ 
+int main(){
+    int n,m;
+    cout<<"Enter the number of nodes and edges :";
+    cin>>n>>m;
+    vector<int>adj[n+1];
+            int u,v;
+    for(int i=0;i<m;i++){
+    cout<<"Enter the nodes of edge :";
+        cin>>u>>v;
+        adj[u].push_back(v);
+    }
+    stack<int>st;
+    vector<int>vis(n+1,0);
+    int src;
+    cout<<"Enter source : ";
+    cin>>src;
+    topo(src,vis,adj,st);
+
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+
+}
