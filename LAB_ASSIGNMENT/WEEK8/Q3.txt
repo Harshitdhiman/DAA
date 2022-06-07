@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Edge{
+    public: 
+    int source;
+    int dest;
+    int weight;
+};
+
+bool comparator(Edge e1 , Edge e2){
+    return e2.weight<e1.weight;
+}
+
+int find_parent(int v,int parent[]){
+    if(v==parent[v])
+        return v;
+
+    return find_parent(parent[v],parent);
+}
+
+void kruskal(Edge *input , int n , int e){
+    sort(input,input+e,comparator);
+    Edge *output=new Edge[n-1];
+    
+int parent[n];
+
+for(int i=0;i<n;i++){
+    parent[i]=i;
+}
+
+    int i=0,c=0;
+    while(c<n-1){
+        Edge current=input[i];
+
+        int source_parent=find_parent(current.source,parent);
+        int dest_parent=find_parent(current.dest,parent);
+
+        if(source_parent!=dest_parent){
+            parent[current.dest]=current.source;
+            output[c]=current;
+            c++;
+        }
+        i++;
+    }
+    for(int j=0;j<n-1;j++){
+        cout<<output[j].source<<"-"<<output[j].dest<<" -> "<<output[j].weight<<endl;
+    }
+}
+
+
+int main(){
+    int n,e;
+    cout<<"Enter the Nodes and edges : ";
+    cin>>n>>e;
+    
+    Edge *input=new Edge[e];
+    int s,d,w;
+    cout<<"Enter source Destination and weights :-\n";
+    for(int i=0;i<e;i++){
+        cin>>s>>d>>w;
+        input[i].source=s;
+        input[i].dest=d;
+        input[i].weight=w;
+    }
+    kruskal(input,n,e);
+}
