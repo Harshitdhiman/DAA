@@ -37,10 +37,7 @@ else    if(v[j].second<=v[i].first)
     
 }
 cout<<"Selected tasks are:"<<ans.size()<<endl;
-for(auto val:ans)
-{
-    cout<<val.first<<"-"<<val.second<<"   ";
-}
+
 
 return 0;
 }
