@@ -24,7 +24,7 @@ int main()
             currEnd=activity[i].first;
         }
     }
-    cout<<c<<"\n";
+    cout<<"No. of non-conflicting activities: "<<c<<"\n";
     for(int i=0;i<sol.size();i++)
        cout<<sol[i]+1<<" ";
     return 0;
