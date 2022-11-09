@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<math.h>
+float a=3,b=4,c=9;
+float f1(float x){
+    return 1.0*(pow(x,a)-b*x-c);
+}
+float newx(float x1,float x2){
+return x1-((x2-x1)/(f1(x2)-f1(x1))*f1(x1));
+}
+
+int main(){
+float k,l;
+printf("************  Regular Falsi  *************\n\n");
+printf("Enter the Limits between which root lies : ");
+scanf("%f %f",&k,&l);
+
+float next=0;
+float pre;
+int count=0;
+double absolute;
+do{
+    count++;
+    pre=next;
+    next=newx(k,l);
+    if(next<0){
+        k=next;
+    }
+    else{
+        l=next;
+    }
+    
+    printf("After %d repetition Root is %f\n\n",count,next);
+    absolute=fabs(next-pre);
+}while(absolute>0.000002);
+
+printf("Final value of x : %f",next);
+}

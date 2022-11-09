@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<math.h>
+float a=3,b=4,c=9;
+float f1(float x){
+    return 1.0*(pow(x,a)-b*x-c);
+}
+float f2(float x){
+    return 1.0*(3*pow(x,2)-b);
+}
+float newx(float x){
+return x*1.0-(f1(x)/f2(x));
+}
+
+int main(){
+int k,l;
+printf("************  Newton Raphson  *************\n\n");
+printf("Enter the Limits between which root lies : ");
+scanf("%d %d",&k,&l);
+float ind=1.0*(k+l)/2;
+float pre;
+int count=0;
+float correct=newx(ind);
+double absolute;
+do{
+    count++;
+    pre=correct;
+    correct=newx(pre);
+    printf(" After %d repetition : %f\n\n",count,correct);
+    absolute=fabs(pre-correct);
+}while(absolute>0.0000002);
+printf("Final value of x : %f",correct);
+}

@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<math.h>
+float a=3,b=4,c=9;
+
+float f1(float x){
+    return 1.0*(pow(x,a)-b*x-c);
+}
+
+int main(){
+float k,l;
+printf("************  Bisection Method  *************\n\n");
+printf("Enter the Limits between which root lies : ");
+scanf("%f %f",&k,&l);
+float next;
+int count=0;
+float correct=next;
+double absolute;
+do{
+    count++;
+    next=1.0*(k+l)/2;
+    correct=f1(next);
+    if(correct<0){
+        k=next;
+    }
+    else{
+        l=next;
+    }
+    printf("After %d repetition Root lies between %f and %f\n\n",count,k,l);
+    absolute=fabs(k-l);
+}while(absolute>0.000002);
+printf("Final value of x : %f",k);
+}
